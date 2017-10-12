@@ -16,5 +16,7 @@
 - (void)notifyOfTokenRefresh:(NSString*) token;
 - (void)appEnterBackground;
 - (void)appEnterForeground;
+// APNS
+- (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
 
 @end
