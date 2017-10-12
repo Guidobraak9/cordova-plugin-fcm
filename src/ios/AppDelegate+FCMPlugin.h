@@ -11,6 +11,7 @@
 #import <Cordova/CDVViewController.h>
 
 @interface AppDelegate (FCMPlugin)
+  // APNS
   - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
 
 + (NSData*)getLastPush;
