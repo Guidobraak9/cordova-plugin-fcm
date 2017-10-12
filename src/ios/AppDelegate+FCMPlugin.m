@@ -300,7 +300,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 
 // APNS
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    PushPlugin *pushHandler = [self getCommandInstance:@"PushNotification"];
+    FCMPlugin *pushHandler = [self getCommandInstance:@"PushNotification"];
     [pushHandler didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
