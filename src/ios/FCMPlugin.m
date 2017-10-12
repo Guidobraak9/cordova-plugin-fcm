@@ -76,6 +76,28 @@ static FCMPlugin *fcmPluginInstance;
 
 - (void) registerNotification:(CDVInvokedUrlCommand *)command
 {
+    // NEW
+    NSString * registrationToken = [[FIRInstanceID instanceID] token];
+
+    if (registrationToken != nil) {
+        NSLog(@"FCM Registration Token: %@", registrationToken);
+        [self setFcmRegistrationToken: registrationToken];
+
+        id topics = [self fcmTopics];
+        if (topics != nil) {
+            for (NSString *topic in topics) {
+                NSLog(@"subscribe to topic: %@", topic);
+                id pubSub = [FIRMessaging messaging];
+                [pubSub subscribeToTopic:topic];
+            }
+        }
+
+        [self registerWithToken:registrationToken];
+    } else {
+        NSLog(@"FCM token is null");
+    }
+    // end NEW
+    
     NSLog(@"view registered for notifications");
     
     notificatorReceptorReady = YES;
@@ -181,9 +203,9 @@ static FCMPlugin *fcmPluginInstance;
     [results setValue:dev.model forKey:@"deviceModel"];
     [results setValue:dev.systemVersion forKey:@"deviceSystemVersion"];
 
-    /*if(![self usesFCM]) {
+    //if(![self usesFCM]) {
         [self registerWithToken: token];
-    }*/
+    //}
 #endif
 }
 
