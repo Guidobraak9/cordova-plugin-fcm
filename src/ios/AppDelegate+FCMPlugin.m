@@ -298,6 +298,12 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 }
 // [END disconnect_from_fcm]
 
+// APNS
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    PushPlugin *pushHandler = [self getCommandInstance:@"PushNotification"];
+    [pushHandler didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
 +(NSData*)getLastPush
 {
     NSData* returnValue = lastPush;
