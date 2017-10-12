@@ -131,10 +131,10 @@ static FCMPlugin *fcmPluginInstance;
 }
 
 - (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    if (self.callbackId == nil) {
+    /*if (callbackId == nil) {
         NSLog(@"Unexpected call to didRegisterForRemoteNotificationsWithDeviceToken, ignoring: %@", deviceToken);
         return;
-    }
+    }*/
     NSLog(@"Push Plugin register success: %@", deviceToken);
 
     NSMutableDictionary *results = [NSMutableDictionary dictionary];
